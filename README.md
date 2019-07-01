@@ -1,3 +1,40 @@
+FBU Seattle CodePath
+# Twitter
+A simple Twitter client.
+
+## Required User Stories (MVP)
+- [x] User can sign in to Twitter using OAuth login (2 points)
+- [x] User can view the tweets from their home timeline (4 points)
+	- [x] User should be displayed the username, name, and body for each tweet
+	- [ ] User should be displayed the relative timestamp for each tweet "8m", "7h"
+- [ ] User can compose a new tweet (4 points)
+	- [ ] User can click a "Compose" icon in the App Bar on the top right
+	- [ ] User can then enter a new tweet and post this to Twitter
+	- [ ] User is taken back to home timeline with new tweet visible in timeline
+	- [ ] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
+
+## Stretch Stories
+- [ ] While composing a tweet, user can see a character counter with characters remaining for tweet out of 280 (1 point)
+- [ ] User can refresh timeline of tweets by pulling down to refresh (i.e pull-to-refresh) (1 point)
+- [ ] Improve the user interface and theme the app to feel "twitter branded" with colors and styles (1 to 5 points)
+- [ ] When any background or network task is happening, user sees an indeterminate progress indicator (1 point)
+- [ ] User can "reply" to any tweet from their home timeline (1 point)
+	- [ ] The user that wrote the original tweet is automatically "@" replied in compose
+- [ ] User can click on a tweet to be taken to a "detail view" of that tweet (2 points)
+	- [ ] User can take favorite (and unfavorite) or reweet actions on a tweet
+- [ ] User can see embedded image media within a tweet on list or detail view. (1 point)
+- [ ] User can view more tweets as they scroll with infinite pagination. Number of tweets is unlimited. Refer to the infinite pagination conceptual guide for more details. (2 points)
+- [ ] Compose activity is replaced with a modal overlay (2 points)
+- [ ] Links in tweets are clickable and will launch the web browser (see autolink) (1 point)
+- [ ] Use Parcelable instead of Serializable leveraging the popular Parceler library. (1 point)
+- [ ] Replace all icon drawables and other static image assets with vector drawables where appropriate. (1 point)
+- [ ] User can view following / followers list through any profile they view. (2 points)
+- [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
+- [ ] Experiment with fancy scrolling effects on the Twitter profile view. (2 points)
+- [ ] User can open the twitter app offline and see last loaded tweets persisted into SQLite (2 points)
+
+---
+
 # RestClientTemplate [![Build Status](https://travis-ci.org/codepath/android-rest-client-template.svg?branch=master)](https://travis-ci.org/codepath/android-rest-client-template)
 
 ## Overview
