@@ -1,0 +1,214 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+MERGED from [com.codepath.libraries:android-oauth-handler:1.4.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/d4fdc83ea0698fa10660a9c5b0208930/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/72787fb59efff81696c6a12db0a44280/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/e37d4c751f5a54c26b7b82c2fb2e871d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/732f15d50f0c6ea6a281fbd7df47f568/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.stetho:stetho:1.5.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/9ca64d385557086cff69c41b3cae59ba/AndroidManifest.xml:2:1-13:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f24447446812979eaccafd0fbe8f710c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f7c3d81b522637cafe109260f1a635bd/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/b7d9412cd151d62aa53fab0dd57b1905/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/898bf63aea37bb4ec0ea37b911830fad/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/66558f6dbaf1563bf571edb1ee14575f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/47205d3351b2ae8b5bfa6cd7653ec80f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/c362592e875a63758f2197be9c9d1f26/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/091c1e545235e0854248a3e02bcfd97a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1aba2de277468648862dc54f306954da/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1316022cedd952b09c039f60563fe7c1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/314a15d082b73fc17dd1f0ab7176569d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/7a843fb673e3f423335ef3be14e1edb1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/6dda00a25de63d254d159fe014035795/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/8a4d6fa9b5310f2af754c9e7d4c1e434/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/482a686e0b31138091f8fed95142531f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/b916968f1532b7a2cdc0bee6fa72ca0f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/fb69e0be151c7230a50e7e4ed41dbeb9/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/462e586b34394e0e8da96c5ffbfe4fdd/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/cdba2fae4fd847e9d48d9655d074d16b/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db-framework:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1fd7c93f4646e32fca59ae5cea1febe7/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/d8fcc74879382b167c6b1dd96802c495/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/55f8956ec42f70a34ef51f445856dbc0/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f1cc0b344f752d9bca35aff579a6c6f4/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/63fb275081a71a62672eb9deafc7719a/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/3014eca18882595ec14319533bc802b1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1ec568eb2f139ede43beb7d1ac278154/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/a391c0755e32ddc3857c0b5d6cec0df5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1875754fe6f6eb78694b65d1e7ad72cc/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/36374ddae81ad7734907a91b22f2c3b7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/cda047babe0fe145fb579e584bf01dac/AndroidManifest.xml:17:1-22:12
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:1-39:12
+	package
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:3:5-40
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:5:5-30
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:8:5-81
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:8:22-78
+application
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:10:5-37:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/732f15d50f0c6ea6a281fbd7df47f568/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/732f15d50f0c6ea6a281fbd7df47f568/AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.stetho:stetho:1.5.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/9ca64d385557086cff69c41b3cae59ba/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho:1.5.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/9ca64d385557086cff69c41b3cae59ba/AndroidManifest.xml:11:5-20
+MERGED from [com.android.support:support-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/fb69e0be151c7230a50e7e4ed41dbeb9/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/fb69e0be151c7230a50e7e4ed41dbeb9/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/462e586b34394e0e8da96c5ffbfe4fdd/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/462e586b34394e0e8da96c5ffbfe4fdd/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/fb69e0be151c7230a50e7e4ed41dbeb9/AndroidManifest.xml:22:18-91
+	android:label
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:14:9-41
+	android:icon
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:13:9-45
+	android:allowBackup
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:12:9-35
+	android:theme
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:15:9-40
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:11:9-35
+activity#com.codepath.apps.twitter.TimelineActivity
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:16:9-63
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:16:19-51
+activity#com.codepath.apps.twitter.LoginActivity
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:17:9-36:20
+	android:label
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:19:13-45
+	android:theme
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:20:13-44
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:18:13-42
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:21:13-25:29
+action#android.intent.action.MAIN
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:24:17-77
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:24:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:@string/intent_host+data:scheme:@string/intent_scheme
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:26:13-35:29
+action#android.intent.action.VIEW
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:27:17-69
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:27:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:29:17-76
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:29:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:30:17-78
+	android:name
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:30:27-75
+data
+ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:32:17-34:62
+	android:host
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:33:21-55
+	android:scheme
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml:34:21-59
+uses-sdk
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+MERGED from [com.codepath.libraries:android-oauth-handler:1.4.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/d4fdc83ea0698fa10660a9c5b0208930/AndroidManifest.xml:7:5-9:41
+MERGED from [com.codepath.libraries:android-oauth-handler:1.4.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/d4fdc83ea0698fa10660a9c5b0208930/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/72787fb59efff81696c6a12db0a44280/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/72787fb59efff81696c6a12db0a44280/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/e37d4c751f5a54c26b7b82c2fb2e871d/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/e37d4c751f5a54c26b7b82c2fb2e871d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/732f15d50f0c6ea6a281fbd7df47f568/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/732f15d50f0c6ea6a281fbd7df47f568/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.stetho:stetho:1.5.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/9ca64d385557086cff69c41b3cae59ba/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.stetho:stetho:1.5.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/9ca64d385557086cff69c41b3cae59ba/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f24447446812979eaccafd0fbe8f710c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f24447446812979eaccafd0fbe8f710c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f7c3d81b522637cafe109260f1a635bd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f7c3d81b522637cafe109260f1a635bd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/b7d9412cd151d62aa53fab0dd57b1905/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/b7d9412cd151d62aa53fab0dd57b1905/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/898bf63aea37bb4ec0ea37b911830fad/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/898bf63aea37bb4ec0ea37b911830fad/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/66558f6dbaf1563bf571edb1ee14575f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/66558f6dbaf1563bf571edb1ee14575f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/47205d3351b2ae8b5bfa6cd7653ec80f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/47205d3351b2ae8b5bfa6cd7653ec80f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/c362592e875a63758f2197be9c9d1f26/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/c362592e875a63758f2197be9c9d1f26/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/091c1e545235e0854248a3e02bcfd97a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/091c1e545235e0854248a3e02bcfd97a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1aba2de277468648862dc54f306954da/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1aba2de277468648862dc54f306954da/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1316022cedd952b09c039f60563fe7c1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1316022cedd952b09c039f60563fe7c1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/314a15d082b73fc17dd1f0ab7176569d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/314a15d082b73fc17dd1f0ab7176569d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/7a843fb673e3f423335ef3be14e1edb1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/7a843fb673e3f423335ef3be14e1edb1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/6dda00a25de63d254d159fe014035795/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/6dda00a25de63d254d159fe014035795/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/8a4d6fa9b5310f2af754c9e7d4c1e434/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/8a4d6fa9b5310f2af754c9e7d4c1e434/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/482a686e0b31138091f8fed95142531f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/482a686e0b31138091f8fed95142531f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/b916968f1532b7a2cdc0bee6fa72ca0f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/b916968f1532b7a2cdc0bee6fa72ca0f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/fb69e0be151c7230a50e7e4ed41dbeb9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/fb69e0be151c7230a50e7e4ed41dbeb9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/462e586b34394e0e8da96c5ffbfe4fdd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/462e586b34394e0e8da96c5ffbfe4fdd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/cdba2fae4fd847e9d48d9655d074d16b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/cdba2fae4fd847e9d48d9655d074d16b/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1fd7c93f4646e32fca59ae5cea1febe7/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1fd7c93f4646e32fca59ae5cea1febe7/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/d8fcc74879382b167c6b1dd96802c495/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/d8fcc74879382b167c6b1dd96802c495/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/55f8956ec42f70a34ef51f445856dbc0/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/55f8956ec42f70a34ef51f445856dbc0/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f1cc0b344f752d9bca35aff579a6c6f4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/f1cc0b344f752d9bca35aff579a6c6f4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/63fb275081a71a62672eb9deafc7719a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/63fb275081a71a62672eb9deafc7719a/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/3014eca18882595ec14319533bc802b1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/3014eca18882595ec14319533bc802b1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1ec568eb2f139ede43beb7d1ac278154/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1ec568eb2f139ede43beb7d1ac278154/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/a391c0755e32ddc3857c0b5d6cec0df5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/a391c0755e32ddc3857c0b5d6cec0df5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1875754fe6f6eb78694b65d1e7ad72cc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/1875754fe6f6eb78694b65d1e7ad72cc/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/36374ddae81ad7734907a91b22f2c3b7/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/36374ddae81ad7734907a91b22f2c3b7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/cda047babe0fe145fb579e584bf01dac/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /Users/jmindel/.gradle/caches/transforms-2/files-2.1/cda047babe0fe145fb579e584bf01dac/AndroidManifest.xml:20:5-44
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		ADDED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jmindel/Projects/CodePath/twitter/app/src/main/AndroidManifest.xml
