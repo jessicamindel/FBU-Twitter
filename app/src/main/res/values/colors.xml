@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textRegular">#333333</color>
+    <color name="textWarning">#C4A114</color>
+    <color name="textError">#C41C14</color>
+</resources>

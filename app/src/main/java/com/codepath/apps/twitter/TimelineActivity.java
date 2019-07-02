@@ -104,8 +104,42 @@ public class TimelineActivity extends AppCompatActivity {
             dialog.fire(new ComposeDialog.OnFinishHandler() {
                 @Override
                 public void onPost(String body) {
-                    // TODO: Hook up actual posting
-                    Toast.makeText(TimelineActivity.this, body, Toast.LENGTH_LONG).show();
+                    Toast.makeText(TimelineActivity.this, "Posting...", Toast.LENGTH_SHORT).show();
+                    client.sendTweet(body, new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            Toast.makeText(TimelineActivity.this, "Posted!", Toast.LENGTH_LONG).show();
+                            try {
+                                Tweet posted = Tweet.fromJSON(response);
+                                tweets.add(0, posted);
+                                adapter.notifyItemInserted(tweets.size() - 1);
+                                rvTweets.scrollToPosition(0);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            Toast.makeText(TimelineActivity.this, "Posting failed", Toast.LENGTH_LONG).show();
+                            Log.d("TimelineActivity", errorResponse.toString());
+                            throwable.printStackTrace();
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                            Toast.makeText(TimelineActivity.this, "Posting failed", Toast.LENGTH_LONG).show();
+                            Log.d("TimelineActivity", errorResponse.toString());
+                            throwable.printStackTrace();
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                            Toast.makeText(TimelineActivity.this, "Posting failed", Toast.LENGTH_LONG).show();
+                            Log.d("TimelineActivity", responseString);
+                            throwable.printStackTrace();
+                        }
+                    });
                 }
 
                 @Override
