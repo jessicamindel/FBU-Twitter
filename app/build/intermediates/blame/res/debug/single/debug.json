@@ -932,6 +932,10 @@
         "source": "/Users/jmindel/.gradle/caches/transforms-2/files-2.1/72787fb59efff81696c6a12db0a44280/res/layout/abc_dialog_title_material.xml"
     },
     {
+        "merged": "/Users/jmindel/Projects/CodePath/twitter/app/build/intermediates/res/merged/debug/layout_dialog_compose.xml.flat",
+        "source": "/Users/jmindel/Projects/CodePath/twitter/app/src/main/res/layout/dialog_compose.xml"
+    },
+    {
         "merged": "/Users/jmindel/Projects/CodePath/twitter/app/build/intermediates/res/merged/debug/layout_abc_select_dialog_material.xml.flat",
         "source": "/Users/jmindel/.gradle/caches/transforms-2/files-2.1/72787fb59efff81696c6a12db0a44280/res/layout/abc_select_dialog_material.xml"
     },

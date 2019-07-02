@@ -47,6 +47,7 @@ public class TwitterClient extends OAuthBaseClient {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
+		// FIXME: If I scroll to the point where I have tweets that are around a day old, the app crashes.
 		params.put("count", 25);
 		// The id of the latest tweet from which to find tweets, good for reloading with cached data
 		params.put("since_id", 1);

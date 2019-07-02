@@ -721,6 +721,7 @@ id disableHome
 id edit_query
 id end
 id end_padder
+id etBody
 id expand_activities_button
 id expanded_menu
 id fill
@@ -813,6 +814,7 @@ id title_template
 id top
 id topPanel
 id tvBody
+id tvCharsLeft
 id tvDate
 id tvUserName
 id uniform
@@ -856,6 +858,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_login
 layout activity_timeline
+layout dialog_compose
 layout item_tweet
 layout notification_action
 layout notification_action_tombstone

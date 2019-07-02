@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.apps.twitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -99,7 +100,19 @@ public class TimelineActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_compose) {
-            // Intent i = new Intent(this, ComposeActivity.class);
+            ComposeDialog dialog = new ComposeDialog(this);
+            dialog.fire(new ComposeDialog.OnFinishHandler() {
+                @Override
+                public void onPost(String body) {
+                    // TODO: Hook up actual posting
+                    Toast.makeText(TimelineActivity.this, body, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onCancel() {
+                    Toast.makeText(TimelineActivity.this, "Post canceled", Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);
