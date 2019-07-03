@@ -46,6 +46,7 @@ public class ComposeDialogBuilder {
     public void fire(Tweet toReplyTo, final OnFinishHandler handler) {
         inflate();
         tvReplyTo.setText("To @" + toReplyTo.user.screenName + "...");
+        etBody.setText("@" + toReplyTo.user.screenName + " ");
         startCountingChars(0);
         showDialog(toReplyTo, handler);
     }

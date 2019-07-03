@@ -46,14 +46,21 @@ public class TwitterClient extends OAuthBaseClient {
 	}
 	// CHANGE THIS
 	// DEFINE METHODS for different API endpoints here
-	public void getHomeTimeline(AsyncHttpResponseHandler handler) {
+	public void getHomeTimeline(int count, AsyncHttpResponseHandler handler) {
+		getHomeTimeline(count, -1, handler);
+	}
+
+	public void getHomeTimeline(int count, long maxId, AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
 		// FIXME: If I scroll to the point where I have tweets that are around a day old, the app crashes.
-		params.put("count", 25);
+		params.put("count", count);
 		// The id of the latest tweet from which to find tweets, good for reloading with cached data
 		params.put("since_id", 1);
+		if (maxId > -1) {
+			params.put("max_id", maxId);
+		}
 		client.get(apiUrl, params, handler);
 	}
 

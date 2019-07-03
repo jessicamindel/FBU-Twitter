@@ -28,6 +28,7 @@ public class TimelineActivity extends AppCompatActivity {
     private ArrayList<Tweet> tweets;
     private RecyclerView rvTweets;
     private SwipeRefreshLayout swipeContainer;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,24 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets = findViewById(R.id.rvTweets);
         tweets = new ArrayList<>();
         adapter = new TweetAdapter(tweets);
+        adapter.setReplyHandler(makeComposeHandler());
 
         // LEARN: I still have yet to understand why/how LayoutManagers work.
-        rvTweets.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rvTweets.setLayoutManager(linearLayoutManager);
         rvTweets.setAdapter(adapter);
 
-        adapter.setReplyHandler(makeComposeHandler());
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                long maxId = getOldestId();
+                populateTimeline(25, maxId);
+            }
+        };
+        // Adds the scroll listener to RecyclerView
+        rvTweets.addOnScrollListener(scrollListener);
 
         // Set up swipe container
         swipeContainer = findViewById(R.id.swipeContainer);
@@ -63,8 +76,11 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateTimeline() {
-        client.getHomeTimeline(new JsonHttpResponseHandler() {
+        populateTimeline(25, -1);
+    }
 
+    private void populateTimeline(int count, long maxId) {
+        client.getHomeTimeline(count, maxId, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("TimelineActivity", response.toString());
@@ -185,5 +201,9 @@ public class TimelineActivity extends AppCompatActivity {
                 Toast.makeText(TimelineActivity.this, "Post canceled", Toast.LENGTH_LONG).show();
             }
         };
+    }
+
+    private long getOldestId() {
+        return this.tweets.get(this.tweets.size() - 1).uid;
     }
 }

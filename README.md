@@ -18,7 +18,7 @@ A simple Twitter client.
 - [x] User can refresh timeline of tweets by pulling down to refresh (i.e pull-to-refresh) (1 point)
 - [ ] Improve the user interface and theme the app to feel "twitter branded" with colors and styles (1 to 5 points)
 - [ ] When any background or network task is happening, user sees an indeterminate progress indicator (1 point)
-- [ ] User can "reply" to any tweet from their home timeline (1 point)
+- [x] User can "reply" to any tweet from their home timeline (1 point)
 	- [ ] The user that wrote the original tweet is automatically "@" replied in compose
 - [ ] User can click on a tweet to be taken to a "detail view" of that tweet (2 points)
 	- [ ] User can take favorite (and unfavorite) or reweet actions on a tweet
