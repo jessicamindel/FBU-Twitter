@@ -15,10 +15,11 @@ import android.widget.TextView;
 
 import com.codepath.apps.twitter.models.User;
 
-public class ComposeDialog {
+public class ComposeDialogBuilder {
     public static abstract class OnFinishHandler {
         // TODO: Implement "save draft" feature
         public abstract void onPost(String body);
+//        public abstract void onPost(String body, Tweet toReplyTo);
         public abstract void onCancel();
     }
 
@@ -27,7 +28,7 @@ public class ComposeDialog {
     private EditText etBody;
     private TextView tvCharsLeft, tvReplyTo;
 
-    public ComposeDialog(Activity activity) {
+    public ComposeDialogBuilder(Activity activity) {
         this.activity = activity;
     }
 
@@ -44,7 +45,7 @@ public class ComposeDialog {
 
     public void fire(User toReplyTo, final OnFinishHandler handler) {
         inflate();
-        etBody.setText("To @ " + toReplyTo.screenName + "...");
+        tvReplyTo.setText("To @" + toReplyTo.screenName + "...");
         startCountingChars(0);
         showDialog(handler);
     }
@@ -88,7 +89,7 @@ public class ComposeDialog {
             color = R.color.textWarning;
         }
         tvCharsLeft.setTextColor(ResourcesCompat.getColor(activity.getResources(), color, null));
-        Log.d("ComposeDialog", "Count: " + count);
+        Log.d("ComposeDialogBuilder", "Count: " + count);
     }
 
     private void showDialog(final OnFinishHandler handler) {

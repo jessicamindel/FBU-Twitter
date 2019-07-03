@@ -48,8 +48,8 @@ public class TimelineActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-            adapter.clear();
-            populateTimeline();
+                adapter.clear();
+                populateTimeline();
             }
         });
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -121,8 +121,8 @@ public class TimelineActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_compose) {
-            ComposeDialog dialog = new ComposeDialog(this);
-            dialog.fire(new ComposeDialog.OnFinishHandler() {
+            ComposeDialogBuilder dialog = new ComposeDialogBuilder(this);
+            dialog.fire(new ComposeDialogBuilder.OnFinishHandler() {
                 @Override
                 public void onPost(String body) {
                     Toast.makeText(TimelineActivity.this, "Posting...", Toast.LENGTH_SHORT).show();
@@ -163,6 +163,12 @@ public class TimelineActivity extends AppCompatActivity {
                     });
                 }
 
+//                @Override
+//                public void onPost(String body, Tweet toReplyTo) {
+//                    Toast.makeText(TimelineActivity.this, "Posting...", Toast.LENGTH_SHORT).show();
+//                    client.sendTweet(body, toReplyTo, standardJsonHandler);
+//                }
+
                 @Override
                 public void onCancel() {
                     Toast.makeText(TimelineActivity.this, "Post canceled", Toast.LENGTH_LONG).show();
@@ -172,4 +178,61 @@ public class TimelineActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    private ComposeDialogBuilder.OnFinishHandler makeComposeHandler() {
+//        final JsonHttpResponseHandler standardJsonHandler = new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                Toast.makeText(TimelineActivity.this, "Posted!", Toast.LENGTH_LONG).show();
+//                try {
+//                    Tweet posted = Tweet.fromJSON(response);
+//                    tweets.add(0, posted);
+//                    adapter.notifyItemInserted(tweets.size() - 1);
+//                    rvTweets.scrollToPosition(0);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                Toast.makeText(TimelineActivity.this, "Posting failed", Toast.LENGTH_LONG).show();
+//                Log.d("TimelineActivity", errorResponse.toString());
+//                throwable.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+//                Toast.makeText(TimelineActivity.this, "Posting failed", Toast.LENGTH_LONG).show();
+//                Log.d("TimelineActivity", errorResponse.toString());
+//                throwable.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                Toast.makeText(TimelineActivity.this, "Posting failed", Toast.LENGTH_LONG).show();
+//                Log.d("TimelineActivity", responseString);
+//                throwable.printStackTrace();
+//            }
+//        };
+//
+//        return new ComposeDialogBuilder.OnFinishHandler() {
+//            @Override
+//            public void onPost(String body) {
+//                Toast.makeText(TimelineActivity.this, "Posting...", Toast.LENGTH_SHORT).show();
+//                client.sendTweet(body, standardJsonHandler);
+//            }
+//
+//            @Override
+//            public void onPost(String body, Tweet toReplyTo) {
+//                Toast.makeText(TimelineActivity.this, "Posting...", Toast.LENGTH_SHORT).show();
+//                client.sendTweet(body, toReplyTo, standardJsonHandler);
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Toast.makeText(TimelineActivity.this, "Post canceled", Toast.LENGTH_LONG).show();
+//            }
+//        };
+//    }
 }

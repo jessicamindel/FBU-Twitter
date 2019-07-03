@@ -1,6 +1,6 @@
 package com.codepath.apps.twitter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -21,13 +21,14 @@ import java.util.Locale;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivProfileImage;
+        public ImageView ivProfileImage, ivReply;
         public TextView tvUserName, tvBody, tvDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            ivReply = itemView.findViewById(R.id.ivReply);
             tvUserName = itemView.findViewById(R.id.tvUserName);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvDate = itemView.findViewById(R.id.tvDate);
@@ -35,17 +36,19 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     private List<Tweet> tweets;
-    private Context context;
+    private Activity activity;
+//    ComposeDialogBuilder.OnFinishHandler replyHandler;
 
-    public TweetAdapter(List<Tweet> tweets) {
+    public TweetAdapter(List<Tweet> tweets /*, ComposeDialogBuilder.OnFinishHandler replyHandler*/) {
         this.tweets = tweets;
+//        this.replyHandler = replyHandler;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        context = viewGroup.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        activity = (Activity) viewGroup.getContext();
+        LayoutInflater inflater = LayoutInflater.from(activity);
 
         // LEARN: I still don't know what attachToRoot signifies.
         View tweetView = inflater.inflate(R.layout.item_tweet, viewGroup, false);
@@ -55,14 +58,37 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Tweet t = tweets.get(i);
+        final Tweet t = tweets.get(i);
 
         viewHolder.tvUserName.setText(t.user.name);
         viewHolder.tvBody.setText(t.body);
         viewHolder.tvDate.setText(getRelativeTimeAgo(t.createdAt));
-        Glide.with(context)
+        Glide.with(activity)
              .load(t.user.profileImageUrl)
              .into(viewHolder.ivProfileImage);
+
+        viewHolder.ivReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                ComposeDialogBuilder dialog = new ComposeDialogBuilder(activity);
+//                dialog.fire(t.user, new ComposeDialogBuilder.OnFinishHandler() {
+//                    @Override
+//                    public void onPost(String body) {
+//                        replyHandler.onPost(body);
+//                    }
+//
+//                    @Override
+//                    public void onPost(String body, Tweet toReplyTo) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        replyHandler.onCancel();
+//                    }
+//                });
+            }
+        });
     }
 
     @Override

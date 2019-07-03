@@ -2,6 +2,7 @@ package com.codepath.apps.twitter;
 
 import android.content.Context;
 
+import com.codepath.apps.twitter.models.Tweet;
 import com.codepath.oauth.OAuthBaseClient;
 import com.github.scribejava.apis.TwitterApi;
 import com.github.scribejava.core.builder.api.BaseApi;
@@ -61,6 +62,14 @@ public class TwitterClient extends OAuthBaseClient {
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
 		params.put("status", message);
+		client.post(apiUrl, params, handler);
+	}
+	public void sendTweet(String message, Tweet toStatus, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("statuses/update.json");
+		// Can specify query string params directly or through RequestParams.
+		RequestParams params = new RequestParams();
+		params.put("status", message);
+		params.put("in_reply_to_status_id", toStatus.uid);
 		client.post(apiUrl, params, handler);
 	}
 
