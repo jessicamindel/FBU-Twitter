@@ -9,8 +9,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.codepath.apps.twitter.models.User;
 
 public class ComposeDialog {
     public static abstract class OnFinishHandler {
@@ -19,23 +22,43 @@ public class ComposeDialog {
         public abstract void onCancel();
     }
 
-    Activity activity;
-    View vCompose;
-    EditText etBody;
-    TextView tvCharsLeft;
+    private Activity activity;
+    private View vCompose;
+    private EditText etBody;
+    private TextView tvCharsLeft, tvReplyTo;
 
     public ComposeDialog(Activity activity) {
         this.activity = activity;
     }
 
     public void fire(final OnFinishHandler handler) {
+        inflate();
+        tvReplyTo.setVisibility(View.GONE);
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) etBody.getLayoutParams();
+        layoutParams.setMargins(layoutParams.leftMargin, 32, layoutParams.rightMargin, layoutParams.bottomMargin);
+        etBody.requestLayout();
+
+        startCountingChars(0);
+        showDialog(handler);
+    }
+
+    public void fire(User toReplyTo, final OnFinishHandler handler) {
+        inflate();
+        etBody.setText("To @ " + toReplyTo.screenName + "...");
+        startCountingChars(0);
+        showDialog(handler);
+    }
+
+    private void inflate() {
         LayoutInflater inflater = activity.getLayoutInflater();
         vCompose = inflater.inflate(R.layout.dialog_compose, null);
         etBody = vCompose.findViewById(R.id.etBody);
         tvCharsLeft = vCompose.findViewById(R.id.tvCharsLeft);
+        tvReplyTo = vCompose.findViewById(R.id.tvReplyTo);
+    }
 
-        setCharsLeft(0);
-
+    private void startCountingChars(int initNumChars) {
+        setCharsLeft(initNumChars);
         etBody.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -44,7 +67,7 @@ public class ComposeDialog {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                
+
             }
 
             @Override
@@ -52,7 +75,23 @@ public class ComposeDialog {
                 setCharsLeft(s.length());
             }
         });
+    }
 
+    private void setCharsLeft(int count) {
+        int remaining = TwitterClient.MAX_POST_CHARS - count;
+        String text = remaining + " characters left";
+        tvCharsLeft.setText(text);
+        int color = R.color.textRegular;
+        if (remaining <= 0) {
+            color = R.color.textError;
+        } else if (remaining <= 20) {
+            color = R.color.textWarning;
+        }
+        tvCharsLeft.setTextColor(ResourcesCompat.getColor(activity.getResources(), color, null));
+        Log.d("ComposeDialog", "Count: " + count);
+    }
+
+    private void showDialog(final OnFinishHandler handler) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Compose")
                 .setView(vCompose)
@@ -70,19 +109,5 @@ public class ComposeDialog {
                     }
                 });
         builder.show();
-    }
-
-    private void setCharsLeft(int count) {
-        int remaining = TwitterClient.MAX_POST_CHARS - count;
-        String text = remaining + " characters left";
-        tvCharsLeft.setText(text);
-        int color = R.color.textRegular;
-        if (remaining <= 0) {
-            color = R.color.textError;
-        } else if (remaining <= 20) {
-            color = R.color.textWarning;
-        }
-        tvCharsLeft.setTextColor(ResourcesCompat.getColor(activity.getResources(), color, null));
-        Log.d("ComposeDialog", "Count: " + count);
     }
 }
