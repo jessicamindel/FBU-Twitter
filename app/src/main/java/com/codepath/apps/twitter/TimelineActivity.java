@@ -1,6 +1,7 @@
 package com.codepath.apps.twitter;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ public class TimelineActivity extends AppCompatActivity {
     private TweetAdapter adapter;
     private ArrayList<Tweet> tweets;
     private RecyclerView rvTweets;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,20 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
 
+        // Set up swipe container
+        swipeContainer = findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+            adapter.clear();
+            populateTimeline();
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         populateTimeline();
     }
 
@@ -50,6 +66,7 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("TimelineActivity", response.toString());
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
@@ -61,6 +78,7 @@ public class TimelineActivity extends AppCompatActivity {
                         Tweet t = Tweet.fromJSON(response.getJSONObject(i));
                         tweets.add(t);
                         adapter.notifyItemInserted(tweets.size() - 1);
+                        swipeContainer.setRefreshing(false);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -71,18 +89,21 @@ public class TimelineActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.d("TimelineActivity", responseString);
                 throwable.printStackTrace();
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                 Log.d("TimelineActivity", errorResponse.toString());
                 throwable.printStackTrace();
+                swipeContainer.setRefreshing(false);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Log.d("TimelineActivity", errorResponse.toString());
                 throwable.printStackTrace();
+                swipeContainer.setRefreshing(false);
             }
         });
     }

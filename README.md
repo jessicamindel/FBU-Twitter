@@ -6,16 +6,16 @@ A simple Twitter client.
 - [x] User can sign in to Twitter using OAuth login (2 points)
 - [x] User can view the tweets from their home timeline (4 points)
 	- [x] User should be displayed the username, name, and body for each tweet
-	- [ ] User should be displayed the relative timestamp for each tweet "8m", "7h"
+	- [x] User should be displayed the relative timestamp for each tweet "8m", "7h"
 - [ ] User can compose a new tweet (4 points)
-	- [ ] User can click a "Compose" icon in the App Bar on the top right
-	- [ ] User can then enter a new tweet and post this to Twitter
-	- [ ] User is taken back to home timeline with new tweet visible in timeline
-	- [ ] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
+	- [x] User can click a "Compose" icon in the App Bar on the top right
+	- [x] User can then enter a new tweet and post this to Twitter
+	- [x] User is taken back to home timeline with new tweet visible in timeline
+	- [x] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
 
 ## Stretch Stories
-- [ ] While composing a tweet, user can see a character counter with characters remaining for tweet out of 280 (1 point)
-- [ ] User can refresh timeline of tweets by pulling down to refresh (i.e pull-to-refresh) (1 point)
+- [x] While composing a tweet, user can see a character counter with characters remaining for tweet out of 280 (1 point)
+- [x] User can refresh timeline of tweets by pulling down to refresh (i.e pull-to-refresh) (1 point)
 - [ ] Improve the user interface and theme the app to feel "twitter branded" with colors and styles (1 to 5 points)
 - [ ] When any background or network task is happening, user sees an indeterminate progress indicator (1 point)
 - [ ] User can "reply" to any tweet from their home timeline (1 point)
@@ -24,7 +24,7 @@ A simple Twitter client.
 	- [ ] User can take favorite (and unfavorite) or reweet actions on a tweet
 - [ ] User can see embedded image media within a tweet on list or detail view. (1 point)
 - [ ] User can view more tweets as they scroll with infinite pagination. Number of tweets is unlimited. Refer to the infinite pagination conceptual guide for more details. (2 points)
-- [ ] Compose activity is replaced with a modal overlay (2 points)
+- [x] Compose activity is replaced with a modal overlay (2 points)
 - [ ] Links in tweets are clickable and will launch the web browser (see autolink) (1 point)
 - [ ] Use Parcelable instead of Serializable leveraging the popular Parceler library. (1 point)
 - [ ] Replace all icon drawables and other static image assets with vector drawables where appropriate. (1 point)

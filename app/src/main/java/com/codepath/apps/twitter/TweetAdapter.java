@@ -34,12 +34,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         }
     }
 
-    // LEARN: What does the m signify?
-    private List<Tweet> mTweets;
+    private List<Tweet> tweets;
     private Context context;
 
     public TweetAdapter(List<Tweet> tweets) {
-        mTweets = tweets;
+        this.tweets = tweets;
     }
 
     @NonNull
@@ -56,7 +55,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Tweet t = mTweets.get(i);
+        Tweet t = tweets.get(i);
 
         viewHolder.tvUserName.setText(t.user.name);
         viewHolder.tvBody.setText(t.body);
@@ -68,8 +67,21 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mTweets.size();
+        return tweets.size();
     }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Tweet> list) {
+        tweets.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
     public static String getRelativeTimeAgo(String rawJsonDate) {
