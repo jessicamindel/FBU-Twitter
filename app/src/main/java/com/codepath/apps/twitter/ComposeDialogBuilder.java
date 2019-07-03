@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.codepath.apps.twitter.models.User;
+import com.codepath.apps.twitter.models.Tweet;
 
 public class ComposeDialogBuilder {
     public static abstract class OnFinishHandler {
         // TODO: Implement "save draft" feature
         public abstract void onPost(String body);
-//        public abstract void onPost(String body, Tweet toReplyTo);
+        public abstract void onPost(String body, Tweet toReplyTo);
         public abstract void onCancel();
     }
 
@@ -43,11 +43,11 @@ public class ComposeDialogBuilder {
         showDialog(handler);
     }
 
-    public void fire(User toReplyTo, final OnFinishHandler handler) {
+    public void fire(Tweet toReplyTo, final OnFinishHandler handler) {
         inflate();
-        tvReplyTo.setText("To @" + toReplyTo.screenName + "...");
+        tvReplyTo.setText("To @" + toReplyTo.user.screenName + "...");
         startCountingChars(0);
-        showDialog(handler);
+        showDialog(toReplyTo, handler);
     }
 
     private void inflate() {
@@ -101,6 +101,26 @@ public class ComposeDialogBuilder {
                     public void onClick(DialogInterface dialog, int which) {
                         String body = etBody.getText().toString();
                         handler.onPost(body);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        handler.onCancel();
+                    }
+                });
+        builder.show();
+    }
+
+    private void showDialog(final Tweet toReplyTo, final OnFinishHandler handler) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Compose")
+                .setView(vCompose)
+                .setPositiveButton("Post", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String body = etBody.getText().toString();
+                        handler.onPost(body, toReplyTo);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

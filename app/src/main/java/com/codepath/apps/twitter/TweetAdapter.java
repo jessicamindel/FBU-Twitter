@@ -37,11 +37,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     private List<Tweet> tweets;
     private Activity activity;
-//    ComposeDialogBuilder.OnFinishHandler replyHandler;
+    ComposeDialogBuilder.OnFinishHandler replyHandler;
 
-    public TweetAdapter(List<Tweet> tweets /*, ComposeDialogBuilder.OnFinishHandler replyHandler*/) {
+    public TweetAdapter(List<Tweet> tweets) {
         this.tweets = tweets;
-//        this.replyHandler = replyHandler;
+    }
+
+    public void setReplyHandler(ComposeDialogBuilder.OnFinishHandler replyHandler) {
+        this.replyHandler = replyHandler;
     }
 
     @NonNull
@@ -70,23 +73,23 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         viewHolder.ivReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ComposeDialogBuilder dialog = new ComposeDialogBuilder(activity);
-//                dialog.fire(t.user, new ComposeDialogBuilder.OnFinishHandler() {
-//                    @Override
-//                    public void onPost(String body) {
-//                        replyHandler.onPost(body);
-//                    }
-//
-//                    @Override
-//                    public void onPost(String body, Tweet toReplyTo) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancel() {
-//                        replyHandler.onCancel();
-//                    }
-//                });
+                ComposeDialogBuilder dialog = new ComposeDialogBuilder(activity);
+                dialog.fire(t, new ComposeDialogBuilder.OnFinishHandler() {
+                    @Override
+                    public void onPost(String body) {
+                        replyHandler.onPost(body);
+                    }
+
+                    @Override
+                    public void onPost(String body, Tweet toReplyTo) {
+                        replyHandler.onPost(body, toReplyTo);
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        replyHandler.onCancel();
+                    }
+                });
             }
         });
     }
