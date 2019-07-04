@@ -36,6 +36,8 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
         client = TwitterApp.getRestClient(this);
 
+        TweetAdapter.getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
+
         rvTweets = findViewById(R.id.rvTweets);
         tweets = new ArrayList<>();
         adapter = new TweetAdapter(tweets);

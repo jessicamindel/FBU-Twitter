@@ -124,7 +124,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
             long now = (new Date()).getTime();
             long hoursBetween = now - dateMillis;
-            hoursBetween = (int) ((hoursBetween / (1000*60*60)) % 24);
+            hoursBetween = (int) ((hoursBetween / (1000 * 60 * 60)));
 
             if (hoursBetween >= 24) {
                 SimpleDateFormat moreThanADay = new SimpleDateFormat("MMM dd", Locale.US);
