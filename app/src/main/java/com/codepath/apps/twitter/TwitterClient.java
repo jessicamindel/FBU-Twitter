@@ -34,7 +34,8 @@ public class TwitterClient extends OAuthBaseClient {
 	// See https://developer.chrome.com/multidevice/android/intents
 	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 
-	public final static int MAX_POST_CHARS = 280;
+	public static final int MAX_POST_CHARS = 280;
+	public static final int NUM_POSTS_TO_LOAD = 200;
 
 	public TwitterClient(Context context) {
 		super(context, REST_API_INSTANCE,

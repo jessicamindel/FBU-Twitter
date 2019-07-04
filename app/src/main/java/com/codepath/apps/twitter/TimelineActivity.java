@@ -52,7 +52,7 @@ public class TimelineActivity extends AppCompatActivity {
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to the bottom of the list
                 long maxId = getOldestId();
-                populateTimeline(25, maxId);
+                populateTimeline(TwitterClient.NUM_POSTS_TO_LOAD, maxId);
             }
         };
         // Adds the scroll listener to RecyclerView
@@ -76,7 +76,7 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     private void populateTimeline() {
-        populateTimeline(25, -1);
+        populateTimeline(TwitterClient.NUM_POSTS_TO_LOAD, -1);
     }
 
     private void populateTimeline(int count, long maxId) {
