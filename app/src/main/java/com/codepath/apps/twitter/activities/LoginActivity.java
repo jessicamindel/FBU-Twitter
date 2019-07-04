@@ -1,4 +1,4 @@
-package com.codepath.apps.twitter;
+package com.codepath.apps.twitter.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.codepath.apps.twitter.R;
+import com.codepath.apps.twitter.TwitterApp;
+import com.codepath.apps.twitter.TwitterClient;
 import com.codepath.apps.twitter.models.SampleModel;
 import com.codepath.apps.twitter.models.SampleModelDao;
 import com.codepath.oauth.OAuthLoginActionBarActivity;

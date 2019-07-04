@@ -1,4 +1,4 @@
-package com.codepath.apps.twitter;
+package com.codepath.apps.twitter.adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.twitter.ComposeDialogBuilder;
+import com.codepath.apps.twitter.R;
 import com.codepath.apps.twitter.models.Tweet;
 
 import java.text.ParseException;

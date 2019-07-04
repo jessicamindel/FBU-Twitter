@@ -1,4 +1,4 @@
-package com.codepath.apps.twitter;
+package com.codepath.apps.twitter.activities;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,6 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.codepath.apps.twitter.ComposeDialogBuilder;
+import com.codepath.apps.twitter.EndlessRecyclerViewScrollListener;
+import com.codepath.apps.twitter.R;
+import com.codepath.apps.twitter.adapters.TweetAdapter;
+import com.codepath.apps.twitter.TwitterApp;
+import com.codepath.apps.twitter.TwitterClient;
 import com.codepath.apps.twitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -35,8 +41,6 @@ public class TimelineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         client = TwitterApp.getRestClient(this);
-
-        TweetAdapter.getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
 
         rvTweets = findViewById(R.id.rvTweets);
         tweets = new ArrayList<>();
