@@ -24,14 +24,15 @@ import java.util.Locale;
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivProfileImage, ivReply;
-        public TextView tvUserName, tvBody, tvDate;
+        public TextView tvName, tvScreenName, tvBody, tvDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivReply = itemView.findViewById(R.id.ivReply);
-            tvUserName = itemView.findViewById(R.id.tvScreenName);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvDate = itemView.findViewById(R.id.tvDate);
         }
@@ -65,7 +66,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Tweet t = tweets.get(i);
 
-        viewHolder.tvUserName.setText(t.user.name);
+        viewHolder.tvName.setText(t.user.name);
+        viewHolder.tvScreenName.setText("@" + t.user.screenName);
         viewHolder.tvBody.setText(t.body);
         viewHolder.tvDate.setText(getRelativeTimeAgo(t.createdAt));
         Glide.with(activity)

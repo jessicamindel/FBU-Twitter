@@ -105,4 +105,13 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <ImageView
+        android:id="@+id/ivFade"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/swipeContainer"
+        app:srcCompat="@drawable/item_overflow_gradient" />
+
 </android.support.constraint.ConstraintLayout>

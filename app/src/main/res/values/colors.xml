@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1DA1F2</color>
+    <color name="colorPrimary">#ff1DA1F2</color>
+    <color name="colorPrimaryTransparent">#001DA1F2</color>
     <color name="colorScreenName">#bf1DA1F2</color>
     <color name="colorAccent">#94D6FF</color>
     <color name="colorHighlight">#DFF3FF</color>

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,10 @@ public class TimelineActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
     private EndlessRecyclerViewScrollListener scrollListener;
 
+    private ImageView ivFade;
+    private int yScrollPos;
+    private boolean fadeShown;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,11 @@ public class TimelineActivity extends AppCompatActivity {
         ivProfileImage = findViewById(R.id.ivProfileImage);
         tvName = findViewById(R.id.tvName);
         tvScreenName = findViewById(R.id.tvScreenName);
+
+        ivFade = findViewById(R.id.ivFade);
+        ivFade.setVisibility(View.GONE);
+        yScrollPos = 0;
+        fadeShown = false;
 
         // Set up adapter and RecyclerView
         rvTweets = findViewById(R.id.rvTweets);
@@ -73,6 +83,19 @@ public class TimelineActivity extends AppCompatActivity {
                 // Add whatever code is needed to append new items to the bottom of the list
                 long maxId = getOldestId();
                 populateTimeline(TwitterClient.NUM_POSTS_TO_LOAD, maxId);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView view, int dx, int dy) {
+                super.onScrolled(view, dx, dy);
+                yScrollPos += dy;
+                if (yScrollPos > 0 && !fadeShown) {
+                    ivFade.setVisibility(View.VISIBLE);
+                    fadeShown = true;
+                } else if (yScrollPos <= 0 && fadeShown) {
+                    ivFade.setVisibility(View.GONE);
+                    fadeShown = false;
+                }
             }
         };
         // Adds the scroll listener to RecyclerView
