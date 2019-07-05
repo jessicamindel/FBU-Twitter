@@ -8,15 +8,19 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.twitter.R;
-import com.codepath.apps.twitter.adapters.TweetAdapter;
 import com.codepath.apps.twitter.TwitterApp;
 import com.codepath.apps.twitter.TwitterClient;
+import com.codepath.apps.twitter.adapters.TweetAdapter;
 import com.codepath.apps.twitter.models.Tweet;
+import com.codepath.apps.twitter.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -31,8 +35,13 @@ public class TimelineActivity extends AppCompatActivity {
 
     private TwitterClient client;
     private TweetAdapter adapter;
+    private User user;
     private ArrayList<Tweet> tweets;
     private RecyclerView rvTweets;
+
+    private ImageView ivProfileImage;
+    private TextView tvScreenName, tvName;
+
     private SwipeRefreshLayout swipeContainer;
     private EndlessRecyclerViewScrollListener scrollListener;
 
@@ -42,6 +51,11 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
         client = TwitterApp.getRestClient(this);
 
+        ivProfileImage = findViewById(R.id.ivProfileImage);
+        tvName = findViewById(R.id.tvName);
+        tvScreenName = findViewById(R.id.tvScreenName);
+
+        // Set up adapter and RecyclerView
         rvTweets = findViewById(R.id.rvTweets);
         tweets = new ArrayList<>();
         adapter = new TweetAdapter(tweets);
@@ -78,7 +92,25 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+        fetchLoggedInUser();
         populateTimeline();
+    }
+
+    private void fetchLoggedInUser() {
+        client.showLoggedInUser(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                Log.d("TimelineActivity", response.toString());
+                try {
+                    User u = User.fromJSON(response);
+                    tvName.setText(u.name);
+                    tvScreenName.setText("@" + u.screenName);
+                    Glide.with(TimelineActivity.this).load(u.profileImageUrl).into(ivProfileImage);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void populateTimeline() {

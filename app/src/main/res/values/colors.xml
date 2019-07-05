@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textRegular">#333333</color>
+    <color name="colorPrimary">#1DA1F2</color>
+    <color name="colorScreenName">#bf1DA1F2</color>
+    <color name="colorAccent">#94D6FF</color>
+    <color name="colorHighlight">#DFF3FF</color>
+    <color name="colorNeutral">#FFFFFF</color>
+    <color name="colorNeutralScreenName">#bfFFFFFF</color>
+
+    <color name="textRegular">#111111</color>
     <color name="textWarning">#C4A114</color>
     <color name="textError">#C41C14</color>
 </resources>

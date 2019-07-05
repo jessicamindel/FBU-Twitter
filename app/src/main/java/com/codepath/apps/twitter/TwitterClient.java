@@ -55,7 +55,6 @@ public class TwitterClient extends OAuthBaseClient {
 		String apiUrl = getApiUrl("statuses/home_timeline.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
-		// FIXME: If I scroll to the point where I have tweets that are around a day old, the app crashes.
 		params.put("count", count);
 		// The id of the latest tweet from which to find tweets, good for reloading with cached data
 		params.put("since_id", 1);
@@ -79,6 +78,11 @@ public class TwitterClient extends OAuthBaseClient {
 		params.put("status", message);
 		params.put("in_reply_to_status_id", toStatus.uid);
 		client.post(apiUrl, params, handler);
+	}
+
+	public void showLoggedInUser(AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("account/verify_credentials.json");
+		client.get(apiUrl, handler);
 	}
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
