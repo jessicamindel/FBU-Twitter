@@ -16,7 +16,13 @@ A simple Twitter client.
 ## Stretch Stories
 - [x] While composing a tweet, user can see a character counter with characters remaining for tweet out of 280 (1 point)
 - [x] User can refresh timeline of tweets by pulling down to refresh (i.e pull-to-refresh) (1 point)
-- [ ] Improve the user interface and theme the app to feel "twitter branded" with colors and styles (1 to 5 points)
+- [x] Improve the user interface and theme the app to feel "twitter branded" with colors and styles (1 to 5 points)
+	- [x] Floating compose button
+	- [x] Improved text card view
+	- [ ] Photo-specific full-width image in card view with palette matching
+	- [x] Custom toolbar
+	- [ ] Custom compose and reply UI
+	- [ ] Custom detail UI with all replies visible
 - [ ] When any background or network task is happening, user sees an indeterminate progress indicator (1 point)
 - [x] User can "reply" to any tweet from their home timeline (1 point)
 	- [x] The user that wrote the original tweet is automatically "@" replied in compose
@@ -27,7 +33,7 @@ A simple Twitter client.
 - [x] Compose activity is replaced with a modal overlay (2 points)
 - [ ] Links in tweets are clickable and will launch the web browser (see autolink) (1 point)
 - [ ] Use Parcelable instead of Serializable leveraging the popular Parceler library. (1 point)
-- [ ] Replace all icon drawables and other static image assets with vector drawables where appropriate. (1 point)
+- [x] Replace all icon drawables and other static image assets with vector drawables where appropriate. (1 point)
 - [ ] User can view following / followers list through any profile they view. (2 points)
 - [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
 - [ ] Experiment with fancy scrolling effects on the Twitter profile view. (2 points)

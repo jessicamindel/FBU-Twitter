@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -89,10 +87,10 @@ public class TimelineActivity extends AppCompatActivity {
             public void onScrolled(RecyclerView view, int dx, int dy) {
                 super.onScrolled(view, dx, dy);
                 yScrollPos += dy;
-                if (yScrollPos > 0 && !fadeShown) {
+                if (yScrollPos > 5 && !fadeShown) {
                     ivFade.setVisibility(View.VISIBLE);
                     fadeShown = true;
-                } else if (yScrollPos <= 0 && fadeShown) {
+                } else if (yScrollPos <= 5 && fadeShown) {
                     ivFade.setVisibility(View.GONE);
                     fadeShown = false;
                 }
@@ -187,24 +185,9 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.timeline, menu);
-        MenuItem item = menu.findItem(R.id.action_compose);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_compose) {
-            ComposeDialogBuilder dialog = new ComposeDialogBuilder(this);
-            dialog.fire(makeComposeHandler());
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onCompose(View view) {
+        ComposeDialogBuilder dialog = new ComposeDialogBuilder(this);
+        dialog.fire(makeComposeHandler());
     }
 
     private ComposeDialogBuilder.OnFinishHandler makeComposeHandler() {

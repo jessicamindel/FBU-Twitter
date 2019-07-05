@@ -23,18 +23,23 @@ import java.util.Locale;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView ivProfileImage, ivReply;
-        public TextView tvName, tvScreenName, tvBody, tvDate;
+        public ImageView ivProfileImage, ivReply, ivRetweet, ivFavorite;
+        public TextView tvName, tvScreenName, tvBody, tvDate, tvRetweets, tvFavorites;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivReply = itemView.findViewById(R.id.ivReply);
+            ivRetweet = itemView.findViewById(R.id.ivRetweet);
+            ivFavorite = itemView.findViewById(R.id.ivFavorite);
+
             tvName = itemView.findViewById(R.id.tvName);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvDate = itemView.findViewById(R.id.tvDate);
+            tvRetweets = itemView.findViewById(R.id.tvRetweets);
+            tvFavorites = itemView.findViewById(R.id.tvFavorites);
         }
     }
 
@@ -66,10 +71,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Tweet t = tweets.get(i);
 
-        viewHolder.tvName.setText(t.user.name);
+        viewHolder.tvName.setText(ellipsize(t.user.name, 24));
         viewHolder.tvScreenName.setText("@" + t.user.screenName);
         viewHolder.tvBody.setText(t.body);
         viewHolder.tvDate.setText(getRelativeTimeAgo(t.createdAt));
+        viewHolder.tvRetweets.setText(Integer.toString(t.numRetweets));
+        viewHolder.tvFavorites.setText(Integer.toString(t.numFavorites));
         Glide.with(activity)
              .load(t.user.profileImageUrl)
              .into(viewHolder.ivProfileImage);
@@ -94,6 +101,20 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         replyHandler.onCancel();
                     }
                 });
+            }
+        });
+
+        viewHolder.ivRetweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO
+            }
+        });
+
+        viewHolder.ivFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO
             }
         });
     }
@@ -172,5 +193,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         }
 
         return relativeDate;
+    }
+
+    public static String ellipsize(String str, int maxChars) {
+        if (str.length() > maxChars) {
+            String ellipsized = str.substring(0, maxChars - 3);
+            ellipsized += "...";
+            return ellipsized;
+        } else {
+            return str;
+        }
     }
 }
