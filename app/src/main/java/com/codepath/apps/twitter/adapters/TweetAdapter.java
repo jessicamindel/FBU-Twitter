@@ -2,6 +2,7 @@ package com.codepath.apps.twitter.adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.codepath.apps.twitter.StringUtils;
 import com.codepath.apps.twitter.TwitterClient;
 import com.codepath.apps.twitter.models.Tweet;
 import com.codepath.apps.twitter.models.User;
+import com.devs.vectorchildfinder.VectorChildFinder;
+import com.devs.vectorchildfinder.VectorDrawableCompat;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -126,7 +129,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         int prevCount = Integer.parseInt(viewHolder.tvRetweets.getText().toString());
                         int toAdd = (t.retweeted) ? 1 : -1;
                         viewHolder.tvRetweets.setText(Integer.toString(prevCount + toAdd));
-                        // TODO: Change color
+                        // Change button color
+                        VectorChildFinder vector = new VectorChildFinder(activity, R.drawable.ic_retweet, viewHolder.ivRetweet);
+                        VectorDrawableCompat.VFullPath path = vector.findPathByName("path1");
+                        int colorId = (t.retweeted) ? R.color.colorPrimary : R.color.colorAccent;
+                        int color = ResourcesCompat.getColor(activity.getResources(), colorId, null);
+                        path.setFillColor(color);
+                        viewHolder.tvRetweets.setTextColor(color);
                     }
 
                     @Override
@@ -160,7 +169,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         int prevCount = Integer.parseInt(viewHolder.tvFavorites.getText().toString());
                         int toAdd = (t.favorited) ? 1 : -1;
                         viewHolder.tvFavorites.setText(Integer.toString(prevCount + toAdd));
-                        // TODO: Change color (has to be updatable for the photos, too!)
+                        // Change button color
+                        VectorChildFinder vector = new VectorChildFinder(activity, R.drawable.ic_heart, viewHolder.ivFavorite);
+                        VectorDrawableCompat.VFullPath path = vector.findPathByName("path1");
+                        int colorId = (t.favorited) ? R.color.colorPrimary : R.color.colorAccent;
+                        int color = ResourcesCompat.getColor(activity.getResources(), colorId, null);
+                        path.setFillColor(color);
+                        viewHolder.tvFavorites.setTextColor(color);
                     }
 
                     @Override
