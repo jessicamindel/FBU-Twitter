@@ -1,13 +1,20 @@
 package com.codepath.apps.twitter;
 
+import android.app.Activity;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.format.DateUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.devs.vectorchildfinder.VectorChildFinder;
+import com.devs.vectorchildfinder.VectorDrawableCompat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StringUtils {
+public class Utils {
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
     public static String getRelativeTimeAgo(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
@@ -74,5 +81,13 @@ public class StringUtils {
         } else {
             return str;
         }
+    }
+
+    public static void changeColor(Activity activity, ImageView iv, TextView tv, int colorId, int drawableId) {
+        VectorChildFinder vector = new VectorChildFinder(activity, drawableId, iv);
+        VectorDrawableCompat.VFullPath path = vector.findPathByName("path1");
+        int color = ResourcesCompat.getColor(activity.getResources(), colorId, null);
+        path.setFillColor(color);
+        tv.setTextColor(color);
     }
 }

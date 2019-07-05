@@ -2,7 +2,6 @@ package com.codepath.apps.twitter.adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.R;
-import com.codepath.apps.twitter.StringUtils;
 import com.codepath.apps.twitter.TwitterClient;
+import com.codepath.apps.twitter.Utils;
 import com.codepath.apps.twitter.models.Tweet;
 import com.codepath.apps.twitter.models.User;
-import com.devs.vectorchildfinder.VectorChildFinder;
-import com.devs.vectorchildfinder.VectorDrawableCompat;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -55,7 +52,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private User loggedInUser;
     private Activity activity;
     private TwitterClient client;
-    ComposeDialogBuilder.OnFinishHandler replyHandler;
+    private ComposeDialogBuilder.OnFinishHandler replyHandler;
 
     public TweetAdapter(TwitterClient client, List<Tweet> tweets) {
         this.tweets = tweets;
@@ -76,8 +73,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         activity = (Activity) viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(activity);
 
+        // Get correct layout for media type
+        Tweet t = tweets.get(i);
+        int layoutId = R.layout.item_tweet;
+        if (t.hasImages()) {
+            layoutId = R.layout.item_tweet_img;
+        }
+
         // LEARN: I still don't know what attachToRoot signifies.
-        View tweetView = inflater.inflate(R.layout.item_tweet, viewGroup, false);
+        View tweetView = inflater.inflate(layoutId, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(tweetView);
         return viewHolder;
     }
@@ -86,12 +90,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         final Tweet t = tweets.get(i);
 
-        viewHolder.tvName.setText(StringUtils.ellipsize(t.user.name, 24));
+        viewHolder.tvName.setText(Utils.ellipsize(t.user.name, 24));
         viewHolder.tvScreenName.setText("@" + t.user.screenName);
         viewHolder.tvBody.setText(t.body);
-        viewHolder.tvDate.setText(StringUtils.getRelativeTimeAgo(t.createdAt));
+        viewHolder.tvDate.setText(Utils.getRelativeTimeAgo(t.createdAt));
         viewHolder.tvRetweets.setText(Integer.toString(t.numRetweets));
+        setRetweetColor(viewHolder, t);
         viewHolder.tvFavorites.setText(Integer.toString(t.numFavorites));
+        setFavoriteColor(viewHolder, t);
         Glide.with(activity)
              .load(t.user.profileImageUrl)
              .into(viewHolder.ivProfileImage);
@@ -130,12 +136,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         int toAdd = (t.retweeted) ? 1 : -1;
                         viewHolder.tvRetweets.setText(Integer.toString(prevCount + toAdd));
                         // Change button color
-                        VectorChildFinder vector = new VectorChildFinder(activity, R.drawable.ic_retweet, viewHolder.ivRetweet);
-                        VectorDrawableCompat.VFullPath path = vector.findPathByName("path1");
-                        int colorId = (t.retweeted) ? R.color.colorPrimary : R.color.colorAccent;
-                        int color = ResourcesCompat.getColor(activity.getResources(), colorId, null);
-                        path.setFillColor(color);
-                        viewHolder.tvRetweets.setTextColor(color);
+                        setRetweetColor(viewHolder, t);
                     }
 
                     @Override
@@ -170,12 +171,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         int toAdd = (t.favorited) ? 1 : -1;
                         viewHolder.tvFavorites.setText(Integer.toString(prevCount + toAdd));
                         // Change button color
-                        VectorChildFinder vector = new VectorChildFinder(activity, R.drawable.ic_heart, viewHolder.ivFavorite);
-                        VectorDrawableCompat.VFullPath path = vector.findPathByName("path1");
-                        int colorId = (t.favorited) ? R.color.colorPrimary : R.color.colorAccent;
-                        int color = ResourcesCompat.getColor(activity.getResources(), colorId, null);
-                        path.setFillColor(color);
-                        viewHolder.tvFavorites.setTextColor(color);
+                        setFavoriteColor(viewHolder, t);
                     }
 
                     @Override
@@ -215,5 +211,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public void addAll(List<Tweet> list) {
         tweets.addAll(list);
         notifyDataSetChanged();
+    }
+
+    private void setRetweetColor(ViewHolder viewHolder, Tweet t) {
+        int colorId = (t.retweeted) ? R.color.colorPrimary : R.color.colorAccent;
+        Utils.changeColor(activity, viewHolder.ivRetweet, viewHolder.tvRetweets, colorId, R.drawable.ic_retweet);
+    }
+
+    private void setFavoriteColor(ViewHolder viewHolder, Tweet t) {
+        int colorId = (t.favorited) ? R.color.colorPrimary : R.color.colorAccent;
+        Utils.changeColor(activity, viewHolder.ivFavorite, viewHolder.tvFavorites, colorId, R.drawable.ic_heart);
     }
 }

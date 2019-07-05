@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.twitter.R;
-import com.codepath.apps.twitter.StringUtils;
+import com.codepath.apps.twitter.Utils;
 import com.codepath.apps.twitter.TwitterApp;
 import com.codepath.apps.twitter.TwitterClient;
 import com.codepath.apps.twitter.adapters.TweetAdapter;
@@ -126,7 +126,7 @@ public class TimelineActivity extends AppCompatActivity {
                 try {
                     user = User.fromJSON(response);
                     adapter.setLoggedInUser(user);
-                    tvName.setText(StringUtils.ellipsize(user.name, 24));
+                    tvName.setText(Utils.ellipsize(user.name, 24));
                     tvScreenName.setText("@" + user.screenName);
                     Glide.with(TimelineActivity.this).load(user.profileImageUrl).into(ivProfileImage);
                 } catch (JSONException e) {
@@ -192,6 +192,11 @@ public class TimelineActivity extends AppCompatActivity {
         dialog.fire(user, makeComposeHandler());
     }
 
+    private void scrollToTop() {
+        rvTweets.scrollToPosition(0);
+        yScrollPos = 0;
+    }
+
     private ComposeDialogBuilder.OnFinishHandler makeComposeHandler() {
         final JsonHttpResponseHandler standardJsonHandler = new JsonHttpResponseHandler() {
             @Override
@@ -201,7 +206,7 @@ public class TimelineActivity extends AppCompatActivity {
                     Tweet posted = Tweet.fromJSON(response);
                     tweets.add(0, posted);
                     adapter.notifyItemInserted(0);
-                    rvTweets.scrollToPosition(0);
+                    scrollToTop();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

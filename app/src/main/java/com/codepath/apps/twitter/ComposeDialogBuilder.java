@@ -40,7 +40,7 @@ public class ComposeDialogBuilder {
     public void fire(User fromUser, final OnFinishHandler handler) {
         inflate();
 
-        tvName.setText(StringUtils.ellipsize(fromUser.name, 24));
+        tvName.setText(Utils.ellipsize(fromUser.name, 24));
         tvScreenName.setText("@" + fromUser.screenName);
         Glide.with(activity).load(fromUser.profileImageUrl).into(ivProfileImage);
 
@@ -54,13 +54,13 @@ public class ComposeDialogBuilder {
     public void fire(User fromUser, Tweet toReplyTo, final OnFinishHandler handler) {
         inflate();
 
-        tvName.setText(StringUtils.ellipsize(fromUser.name, 24));
+        tvName.setText(Utils.ellipsize(fromUser.name, 24));
         tvScreenName.setText("@" + fromUser.screenName);
         Glide.with(activity).load(fromUser.profileImageUrl).into(ivProfileImage);
 
-        tvToName.setText(StringUtils.ellipsize(toReplyTo.user.name, 18));
+        tvToName.setText(Utils.ellipsize(toReplyTo.user.name, 18));
         tvToScreenName.setText("@" + toReplyTo.user.screenName);
-        tvToDate.setText(StringUtils.getRelativeTimeAgo(toReplyTo.createdAt));
+        tvToDate.setText(Utils.getRelativeTimeAgo(toReplyTo.createdAt));
         tvToBody.setText(toReplyTo.body);
         Glide.with(activity).load(toReplyTo.user.profileImageUrl).into(ivToProfileImage);
 
