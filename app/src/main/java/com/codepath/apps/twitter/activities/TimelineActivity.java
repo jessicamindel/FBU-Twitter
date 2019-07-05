@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.twitter.R;
+import com.codepath.apps.twitter.StringUtils;
 import com.codepath.apps.twitter.TwitterApp;
 import com.codepath.apps.twitter.TwitterClient;
 import com.codepath.apps.twitter.adapters.TweetAdapter;
@@ -123,10 +124,11 @@ public class TimelineActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("TimelineActivity", response.toString());
                 try {
-                    User u = User.fromJSON(response);
-                    tvName.setText(u.name);
-                    tvScreenName.setText("@" + u.screenName);
-                    Glide.with(TimelineActivity.this).load(u.profileImageUrl).into(ivProfileImage);
+                    user = User.fromJSON(response);
+                    adapter.setLoggedInUser(user);
+                    tvName.setText(StringUtils.ellipsize(user.name, 24));
+                    tvScreenName.setText("@" + user.screenName);
+                    Glide.with(TimelineActivity.this).load(user.profileImageUrl).into(ivProfileImage);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -187,7 +189,7 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void onCompose(View view) {
         ComposeDialogBuilder dialog = new ComposeDialogBuilder(this);
-        dialog.fire(makeComposeHandler());
+        dialog.fire(user, makeComposeHandler());
     }
 
     private ComposeDialogBuilder.OnFinishHandler makeComposeHandler() {

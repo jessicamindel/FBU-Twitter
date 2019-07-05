@@ -3,7 +3,6 @@ package com.codepath.apps.twitter.adapters;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.R;
+import com.codepath.apps.twitter.StringUtils;
 import com.codepath.apps.twitter.models.Tweet;
+import com.codepath.apps.twitter.models.User;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,11 +41,16 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     private List<Tweet> tweets;
+    private User loggedInUser;
     private Activity activity;
     ComposeDialogBuilder.OnFinishHandler replyHandler;
 
     public TweetAdapter(List<Tweet> tweets) {
         this.tweets = tweets;
+    }
+
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 
     public void setReplyHandler(ComposeDialogBuilder.OnFinishHandler replyHandler) {
@@ -71,10 +73,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Tweet t = tweets.get(i);
 
-        viewHolder.tvName.setText(ellipsize(t.user.name, 24));
+        viewHolder.tvName.setText(StringUtils.ellipsize(t.user.name, 24));
         viewHolder.tvScreenName.setText("@" + t.user.screenName);
         viewHolder.tvBody.setText(t.body);
-        viewHolder.tvDate.setText(getRelativeTimeAgo(t.createdAt));
+        viewHolder.tvDate.setText(StringUtils.getRelativeTimeAgo(t.createdAt));
         viewHolder.tvRetweets.setText(Integer.toString(t.numRetweets));
         viewHolder.tvFavorites.setText(Integer.toString(t.numFavorites));
         Glide.with(activity)
@@ -85,7 +87,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 ComposeDialogBuilder dialog = new ComposeDialogBuilder(activity);
-                dialog.fire(t, new ComposeDialogBuilder.OnFinishHandler() {
+                dialog.fire(loggedInUser, t, new ComposeDialogBuilder.OnFinishHandler() {
                     @Override
                     public void onPost(String body) {
                         replyHandler.onPost(body);
@@ -134,74 +136,5 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public void addAll(List<Tweet> list) {
         tweets.addAll(list);
         notifyDataSetChanged();
-    }
-
-
-    // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
-    public static String getRelativeTimeAgo(String rawJsonDate) {
-        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
-        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
-        sf.setLenient(true);
-
-        String relativeDate = "";
-        try {
-            long dateMillis = sf.parse(rawJsonDate).getTime();
-
-            long now = (new Date()).getTime();
-            long hoursBetween = now - dateMillis;
-            hoursBetween = (int) ((hoursBetween / (1000 * 60 * 60)));
-
-            if (hoursBetween >= 24) {
-                SimpleDateFormat moreThanADay = new SimpleDateFormat("MMM dd", Locale.US);
-                relativeDate = moreThanADay.format(dateMillis);
-            } else {
-                String rawRelativeDate = DateUtils.getRelativeTimeSpanString(dateMillis, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
-                String[] parts = rawRelativeDate.split(" ");
-                relativeDate = parts[0];
-                switch (parts[1]) {
-                    case "second":
-                    case "seconds":
-                        relativeDate += "s";
-                        break;
-                    case "minute":
-                    case "minutes":
-                        relativeDate += "m";
-                        break;
-                    case "hour":
-                    case "hours":
-                        relativeDate += "h";
-                        break;
-                    case "day":
-                    case "days":
-                        relativeDate += "d";
-                        break;
-                    case "month":
-                    case "months":
-                        relativeDate += "mo";
-                        break;
-                    case "year":
-                    case "years":
-                        relativeDate += "y";
-                        break;
-                    default:
-                        relativeDate = rawRelativeDate;
-                        break;
-                }
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return relativeDate;
-    }
-
-    public static String ellipsize(String str, int maxChars) {
-        if (str.length() > maxChars) {
-            String ellipsized = str.substring(0, maxChars - 3);
-            ellipsized += "...";
-            return ellipsized;
-        } else {
-            return str;
-        }
     }
 }

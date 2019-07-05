@@ -1,59 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:id="@+id/vCompose"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvReplyTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginRight="24dp"
-        android:text="To @x..."
-        android:textAlignment="textStart" />
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivCloseButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close" />
+
+        <FrameLayout
+            android:id="@+id/flProfile"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp"
+                app:cardMaxElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/ivProfileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher"
+                    app:srcCompat="@color/colorAccent" />
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvScreenName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="\@screenname"
+            android:textColor="@color/colorScreenName"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toStartOf="@+id/flProfile"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Firstname Lastname"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/flProfile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvTo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/colorHighlight"
+        app:cardBackgroundColor="@color/colorHighlight"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/flToProfile"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvToName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:text="Name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvToScreenName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:text="\@name"
+                    android:textColor="@color/colorScreenName"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tvToDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="Jun 30"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorScreenName"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/flToProfile"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="0dp"
+                    app:cardMaxElevation="0dp">
+
+                    <ImageView
+                        android:id="@+id/ivToProfileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher"
+                        app:srcCompat="@color/colorAccent" />
+                </android.support.v7.widget.CardView>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvToBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Tweet body"
+                android:textColor="@color/textRegular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/flToProfile"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 
     <EditText
         android:id="@+id/etBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorPrimary"
         android:ems="10"
-        android:hint="Share your thoughts..."
+        android:hint="What's happening?"
         android:inputType="textMultiLine"
         android:singleLine="false"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvTo" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvPostButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="onCompose"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="1000dp"
+        app:cardElevation="16dp"
+        app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvReplyTo"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/etBody">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="14dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_right_arrow" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvCharsLeft"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
-        android:gravity="end"
-        android:orientation="horizontal">
+        android:layout_marginEnd="8dp"
+        android:text="280"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cvPostButton"
+        app:layout_constraintEnd_toStartOf="@+id/cvPostButton"
+        app:layout_constraintTop_toTopOf="@+id/cvPostButton" />
 
-        <TextView
-            android:id="@+id/tvCharsLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="x characters left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etBody"
-            app:layout_constraintVertical_bias="0.0" />
-    </LinearLayout>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
