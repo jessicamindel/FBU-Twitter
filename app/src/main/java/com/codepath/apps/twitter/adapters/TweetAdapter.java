@@ -54,6 +54,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private TwitterClient client;
     private ComposeDialogBuilder.OnFinishHandler replyHandler;
 
+    private static final int VIEWTYPE_PLAIN = 0;
+    private static final int VIEWTYPE_IMG = 1;
+
     public TweetAdapter(TwitterClient client, List<Tweet> tweets) {
         this.tweets = tweets;
         this.client = client;
@@ -67,6 +70,17 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         this.replyHandler = replyHandler;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        Tweet t = tweets.get(position);
+        int viewType = VIEWTYPE_PLAIN;
+        if (t.hasImages()) {
+            viewType = VIEWTYPE_IMG;
+        }
+        return viewType;
+    }
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -74,11 +88,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         LayoutInflater inflater = LayoutInflater.from(activity);
 
         // Get correct layout for media type
-        Tweet t = tweets.get(i);
-        int layoutId = R.layout.item_tweet;
-        if (t.hasImages()) {
-            layoutId = R.layout.item_tweet_img;
-        }
+        int layoutId = (i == VIEWTYPE_IMG) ? R.layout.item_tweet_img : R.layout.item_tweet;
 
         // LEARN: I still don't know what attachToRoot signifies.
         View tweetView = inflater.inflate(layoutId, viewGroup, false);
