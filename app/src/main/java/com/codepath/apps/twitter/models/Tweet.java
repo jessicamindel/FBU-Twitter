@@ -38,7 +38,7 @@ public class Tweet {
                 t.imageUrls.add(url);
             }
         } catch (JSONException e) {
-            Log.i("TweetJSON", "No media found on @" + t.user.screenName + ": " + t.body.substring(0, 20));
+            Log.i("TweetJSON", "No media found on @" + t.user.screenName + ": " + ((t.body.length() > 20) ? t.body.substring(0, 20) : t.body));
         }
 
         return t;

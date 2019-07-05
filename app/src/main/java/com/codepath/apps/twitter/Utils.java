@@ -26,11 +26,15 @@ public class Utils {
             long dateMillis = sf.parse(rawJsonDate).getTime();
 
             long now = (new Date()).getTime();
-            long hoursBetween = now - dateMillis;
-            hoursBetween = (int) ((hoursBetween / (1000 * 60 * 60)));
+            long between = now - dateMillis;
+            int hoursBetween = (int) ((between / (1000 * 60 * 60)));
+            int yearsBetween = (new Date(now)).getYear() - (new Date(dateMillis)).getYear();
 
-            if (hoursBetween >= 24) {
-                SimpleDateFormat moreThanADay = new SimpleDateFormat("MMM dd", Locale.US);
+            if (yearsBetween >= 1) {
+                SimpleDateFormat moreThanAYear = new SimpleDateFormat("MMM d yyyy", Locale.US);
+                relativeDate = moreThanAYear.format(dateMillis);
+            } else if (hoursBetween >= 24) {
+                SimpleDateFormat moreThanADay = new SimpleDateFormat("MMM d", Locale.US);
                 relativeDate = moreThanADay.format(dateMillis);
             } else {
                 String rawRelativeDate = DateUtils.getRelativeTimeSpanString(dateMillis, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
