@@ -67,7 +67,7 @@ public class TimelineActivity extends AppCompatActivity {
         // Set up adapter and RecyclerView
         rvTweets = findViewById(R.id.rvTweets);
         tweets = new ArrayList<>();
-        adapter = new TweetAdapter(tweets);
+        adapter = new TweetAdapter(client, tweets);
         adapter.setReplyHandler(makeComposeHandler());
 
         // LEARN: I still have yet to understand why/how LayoutManagers work.

@@ -8,15 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.R;
 import com.codepath.apps.twitter.StringUtils;
+import com.codepath.apps.twitter.TwitterClient;
 import com.codepath.apps.twitter.models.Tweet;
 import com.codepath.apps.twitter.models.User;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -43,10 +51,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private List<Tweet> tweets;
     private User loggedInUser;
     private Activity activity;
+    private TwitterClient client;
     ComposeDialogBuilder.OnFinishHandler replyHandler;
 
-    public TweetAdapter(List<Tweet> tweets) {
+    public TweetAdapter(TwitterClient client, List<Tweet> tweets) {
         this.tweets = tweets;
+        this.client = client;
     }
 
     public void setLoggedInUser(User loggedInUser) {
@@ -70,7 +80,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
         final Tweet t = tweets.get(i);
 
         viewHolder.tvName.setText(StringUtils.ellipsize(t.user.name, 24));
@@ -109,14 +119,68 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         viewHolder.ivRetweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                client.retweet(t, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        // Update retweet count
+                        int prevCount = Integer.parseInt(viewHolder.tvRetweets.getText().toString());
+                        int toAdd = (t.retweeted) ? 1 : -1;
+                        viewHolder.tvRetweets.setText(Integer.toString(prevCount + toAdd));
+                        // TODO: Change color
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                        throwable.printStackTrace();
+                        Toast.makeText(activity, "Failed to retweet", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                        throwable.printStackTrace();
+                        Toast.makeText(activity, "Failed to retweet", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        throwable.printStackTrace();
+                        Toast.makeText(activity, "Failed to retweet", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
         viewHolder.ivFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                client.favorite(t, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        // Update favorite count
+                        int prevCount = Integer.parseInt(viewHolder.tvFavorites.getText().toString());
+                        int toAdd = (t.favorited) ? 1 : -1;
+                        viewHolder.tvFavorites.setText(Integer.toString(prevCount + toAdd));
+                        // TODO: Change color (has to be updatable for the photos, too!)
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        throwable.printStackTrace();
+                        Toast.makeText(activity, "Failed to favorite", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                        throwable.printStackTrace();
+                        Toast.makeText(activity, "Failed to favorite", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                        throwable.printStackTrace();
+                        Toast.makeText(activity, "Failed to favorite", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }

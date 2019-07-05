@@ -86,11 +86,29 @@ public class TwitterClient extends OAuthBaseClient {
 	}
 
 	public void retweet(Tweet toRetweet, AsyncHttpResponseHandler handler) {
-
+		// Determine whether to retweet or unretweet, and get respective url
+		String apiUrl;
+		if (!toRetweet.retweeted) {
+			apiUrl = getApiUrl("statuses/retweet/" + toRetweet.uid + ".json");
+		} else {
+			apiUrl = getApiUrl("statuses/unretweet/" + toRetweet.uid + ".json");
+		}
+		toRetweet.retweeted = !toRetweet.retweeted;
+		client.post(apiUrl, handler);
 	}
 
 	public void favorite(Tweet toFavorite, AsyncHttpResponseHandler handler) {
-
+		// Determine whether to favorite or unfavorite, and get respective url
+		String apiUrl;
+		if (!toFavorite.favorited) {
+			apiUrl = getApiUrl("/favorites/create.json");
+		} else {
+			apiUrl = getApiUrl("/favorites/destroy.json");
+		}
+		RequestParams params = new RequestParams();
+		params.put("id", toFavorite.uid);
+		toFavorite.favorited = !toFavorite.favorited;
+		client.post(apiUrl, params, handler);
 	}
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
