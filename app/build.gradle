@@ -57,4 +57,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     // Vector color changing
     implementation 'com.github.devsideal:VectorChildFinder:1.0.0'
+    // Material color palettes
+    implementation "com.android.support:palette-v7:28.0.0"
+    implementation "com.android.support:percent:28.0.0"
 }

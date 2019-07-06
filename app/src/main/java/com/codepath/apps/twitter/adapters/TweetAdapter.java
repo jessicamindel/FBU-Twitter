@@ -1,16 +1,26 @@
 package com.codepath.apps.twitter.adapters;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.ColorUtils;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.codepath.apps.twitter.ComposeDialogBuilder;
 import com.codepath.apps.twitter.R;
 import com.codepath.apps.twitter.TwitterClient;
@@ -45,6 +55,26 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvDate = itemView.findViewById(R.id.tvDate);
             tvRetweets = itemView.findViewById(R.id.tvRetweets);
             tvFavorites = itemView.findViewById(R.id.tvFavorites);
+        }
+    }
+
+    public static class ImgViewHolder extends ViewHolder {
+        public ImageView ivFirstImage, ivFade;
+        public FrameLayout flBG;
+
+        public ImgViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ivFirstImage = itemView.findViewById(R.id.ivFirstImage);
+            ivFade = itemView.findViewById(R.id.ivFade);
+            flBG = itemView.findViewById(R.id.flBG);
+        }
+    }
+
+    private static class UnconditionalAllow {
+        public boolean val;
+
+        public UnconditionalAllow() {
+            val = false;
         }
     }
 
@@ -92,7 +122,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
         // LEARN: I still don't know what attachToRoot signifies.
         View tweetView = inflater.inflate(layoutId, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(tweetView);
+        ViewHolder viewHolder = (i == VIEWTYPE_IMG) ? new ImgViewHolder(tweetView) : new ViewHolder(tweetView);
         return viewHolder;
     }
 
@@ -108,9 +138,83 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         setRetweetColor(viewHolder, t);
         viewHolder.tvFavorites.setText(Integer.toString(t.numFavorites));
         setFavoriteColor(viewHolder, t);
+        setReplyColor(viewHolder, t);
         Glide.with(activity)
              .load(t.user.profileImageUrl)
              .into(viewHolder.ivProfileImage);
+
+        t.onColor = Utils.colorFromId(activity, R.color.colorPrimary);
+        t.offColor = Utils.colorFromId(activity, R.color.colorAccent);
+
+        if (t.hasImages()) {
+            SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    ((ImgViewHolder) viewHolder).ivFirstImage.setImageBitmap(resource);
+                    Palette.Builder paletteBuilder = new Palette.Builder(resource);
+                    final UnconditionalAllow unconditionalAllow = new UnconditionalAllow();
+                    paletteBuilder.addFilter(new Palette.Filter() {
+                        @Override
+                        public boolean isAllowed(int color, @NonNull float[] floats) {
+                            float[] hsl = new float[3];
+                            ColorUtils.colorToHSL(color, hsl);
+                            boolean lightnessCondition = hsl[2] >= 0.2 && hsl[2] <= 0.8;
+                            boolean bgCondition = color != Utils.colorFromId(activity, R.color.colorPrimary);
+                            return unconditionalAllow.val || (lightnessCondition && bgCondition);
+                        }
+                    });
+                    Palette palette = paletteBuilder.generate();
+
+                    // Get dominant color without any filter restrictions
+                    unconditionalAllow.val = true;
+                    int domColor = palette.getDominantColor(0x000000);
+                    unconditionalAllow.val = false;
+                    float[] domHSL = new float[3];
+                    ColorUtils.colorToHSL(domColor, domHSL);
+                    boolean imgIsDark = domHSL[2] <= 0.5;
+
+                    int bgColor = palette.getDarkVibrantColor(palette.getDominantColor(0x285481));
+                    float[] bgHSL = new float[3];
+                    ColorUtils.colorToHSL(bgColor, bgHSL);
+                    boolean bgIsDark = bgHSL[2] <= 0.5;
+
+                    int transparentBgColor = ColorUtils.setAlphaComponent(bgColor, 0);
+                    int solidFgColor = ColorUtils.HSLToColor(new float[]{ bgHSL[0], bgHSL[1],
+                                                bgHSL[2] + (float) ((bgIsDark) ? 0.25 : -0.25) });
+                    int activeSolidFgColor = ColorUtils.HSLToColor(new float[]{ bgHSL[0], bgHSL[1],
+                                                bgHSL[2] + (float) ((bgIsDark) ? 0.45 : -0.45) });
+                    int imgFgColor = ColorUtils.HSLToColor(new float[]{ bgHSL[0], bgHSL[1],
+                                                domHSL[2] + (float) ((imgIsDark) ? 0.25 : -0.25) });
+                    int translucentImgFgColor = ColorUtils.setAlphaComponent(imgFgColor, (int) Math.round(255 * 0.75)); // Is this really the right alpha value? Or is it x/255?
+                    int mainTextColor = (bgIsDark) ? Utils.colorFromId(activity, R.color.colorNeutral) : Utils.colorFromId(activity, R.color.textRegular);
+
+                    // FIXME: May want to employ a scaling-based system where the darker or lighter an image is, the more contrast I create.
+                    // FIXME: Doesn't cap out at 0 and 1--it should, though.
+
+                    ((ImgViewHolder) viewHolder).flBG.setBackgroundColor(bgColor);
+                    viewHolder.tvName.setTextColor(imgFgColor);
+                    viewHolder.tvScreenName.setTextColor(translucentImgFgColor);
+                    viewHolder.tvDate.setTextColor(imgFgColor);
+                    viewHolder.tvBody.setTextColor(mainTextColor);
+
+                    t.onColor = activeSolidFgColor;
+                    t.offColor = solidFgColor;
+                    setRetweetColor(viewHolder, t);
+                    setFavoriteColor(viewHolder, t);
+                    setReplyColor(viewHolder, t);
+
+                    Bitmap b = Bitmap.createBitmap(((ImgViewHolder) viewHolder).ivFade.getWidth(), ((ImgViewHolder) viewHolder).ivFade.getHeight(), Bitmap.Config.ARGB_8888);
+                    Shader mShader = new LinearGradient(0, 0, 0, b.getHeight(), new int[] { transparentBgColor, bgColor },
+                            null, Shader.TileMode.CLAMP);
+                    Paint paint = new Paint();
+                    Canvas c = new Canvas(b);
+                    paint.setShader(mShader);
+                    c.drawRect(0, 0, b.getWidth(), b.getHeight(), paint);
+                    ((ImgViewHolder) viewHolder).ivFade.setImageBitmap(b);
+                }
+            };
+            Glide.with(activity).load(t.imageUrls.get(0)).asBitmap().into(target);
+        }
 
         viewHolder.ivReply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,12 +328,16 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     private void setRetweetColor(ViewHolder viewHolder, Tweet t) {
-        int colorId = (t.retweeted) ? R.color.colorPrimary : R.color.colorAccent;
-        Utils.changeColor(activity, viewHolder.ivRetweet, viewHolder.tvRetweets, colorId, R.drawable.ic_retweet);
+        int color = (t.retweeted) ? t.onColor : t.offColor;
+        Utils.changeColor(activity, viewHolder.ivRetweet, viewHolder.tvRetweets, color, R.drawable.ic_retweet, false);
     }
 
     private void setFavoriteColor(ViewHolder viewHolder, Tweet t) {
-        int colorId = (t.favorited) ? R.color.colorPrimary : R.color.colorAccent;
-        Utils.changeColor(activity, viewHolder.ivFavorite, viewHolder.tvFavorites, colorId, R.drawable.ic_heart);
+        int color = (t.favorited) ? t.onColor : t.offColor;
+        Utils.changeColor(activity, viewHolder.ivFavorite, viewHolder.tvFavorites, color, R.drawable.ic_heart, false);
+    }
+
+    private void setReplyColor(ViewHolder viewHolder, Tweet t) {
+        Utils.changeColor(activity, viewHolder.ivReply, null, t.offColor, R.drawable.ic_reply, false);
     }
 }

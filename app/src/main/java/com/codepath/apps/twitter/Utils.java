@@ -87,11 +87,15 @@ public class Utils {
         }
     }
 
-    public static void changeColor(Activity activity, ImageView iv, TextView tv, int colorId, int drawableId) {
+    public static void changeColor(Activity activity, ImageView iv, TextView tv, int colorId, int drawableId, boolean isColorId) {
         VectorChildFinder vector = new VectorChildFinder(activity, drawableId, iv);
         VectorDrawableCompat.VFullPath path = vector.findPathByName("path1");
-        int color = ResourcesCompat.getColor(activity.getResources(), colorId, null);
+        int color = (isColorId) ? colorFromId(activity, colorId) : colorId;
         path.setFillColor(color);
-        tv.setTextColor(color);
+        if (tv != null) tv.setTextColor(color);
+    }
+
+    public static int colorFromId(Activity activity, int id) {
+        return ResourcesCompat.getColor(activity.getResources(), id, null);
     }
 }

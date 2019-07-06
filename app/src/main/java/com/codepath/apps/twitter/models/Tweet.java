@@ -16,6 +16,7 @@ public class Tweet {
     public int numRetweets, numFavorites;
     public boolean retweeted, favorited;
     public ArrayList<String> imageUrls;
+    public int onColor, offColor;
 
     public static Tweet fromJSON(JSONObject obj) throws JSONException {
         Tweet t = new Tweet();
