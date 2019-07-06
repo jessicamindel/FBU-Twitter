@@ -19,16 +19,16 @@ A simple Twitter client.
 - [x] Improve the user interface and theme the app to feel "twitter branded" with colors and styles (1 to 5 points)
 	- [x] Floating compose button
 	- [x] Improved text card view
-	- [ ] Photo-specific full-width image in card view with palette matching
+	- [x] Photo-specific full-width image in card view with palette matching
 	- [x] Custom toolbar
 	- [x] Custom compose and reply UI
-	- [ ] Custom detail UI with all retweets visible
+	- [ ] Custom user detail UI with all user tweets visible
 - [ ] When any background or network task is happening, user sees an indeterminate progress indicator (1 point)
 - [x] User can "reply" to any tweet from their home timeline (1 point)
 	- [x] The user that wrote the original tweet is automatically "@" replied in compose
 - [ ] User can click on a tweet to be taken to a "detail view" of that tweet (2 points)
 	- [x] User can take favorite (and unfavorite) or reweet actions on a tweet
-- [ ] User can see embedded image media within a tweet on list or detail view. (1 point)
+- [x] User can see embedded image media within a tweet on list or detail view. (1 point)
 - [x] User can view more tweets as they scroll with infinite pagination. Number of tweets is unlimited. Refer to the infinite pagination conceptual guide for more details. (2 points)
 - [x] Compose activity is replaced with a modal overlay (2 points)
 - [ ] Links in tweets are clickable and will launch the web browser (see autolink) (1 point)
