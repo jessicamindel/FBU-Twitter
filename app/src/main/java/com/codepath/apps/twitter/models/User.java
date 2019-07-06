@@ -6,7 +6,7 @@ import org.json.JSONObject;
 public class User {
     public String name;
     public long uid;
-    public String screenName, profileImageUrl;
+    public String screenName, profileImageUrl, bannerImageUrl;
 
     public static User fromJSON(JSONObject obj) throws JSONException {
         User u = new User();
@@ -14,6 +14,15 @@ public class User {
         u.uid = obj.getLong("id");
         u.screenName = obj.getString("screen_name");
         u.profileImageUrl = obj.getString("profile_image_url_https");
+        try {
+            u.bannerImageUrl = obj.getString("profile_banner_url");
+        } catch (JSONException e) {
+            u.bannerImageUrl = null;
+        }
         return u;
+    }
+
+    public boolean hasBannerImage() {
+        return bannerImageUrl != null;
     }
 }

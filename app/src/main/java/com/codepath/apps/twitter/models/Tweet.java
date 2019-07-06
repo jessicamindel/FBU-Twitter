@@ -1,7 +1,5 @@
 package com.codepath.apps.twitter.models;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,9 +36,7 @@ public class Tweet {
                 String url = media.getJSONObject(i).getString("media_url_https");
                 t.imageUrls.add(url);
             }
-        } catch (JSONException e) {
-            Log.i("TweetJSON", "No media found on @" + t.user.screenName + ": " + ((t.body.length() > 20) ? t.body.substring(0, 20) : t.body));
-        }
+        } catch (JSONException e) { }
 
         return t;
     }

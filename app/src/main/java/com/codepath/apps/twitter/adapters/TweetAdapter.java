@@ -183,13 +183,16 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                                                 bgHSL[2] + (float) ((bgIsDark) ? 0.25 : -0.25) });
                     int activeSolidFgColor = ColorUtils.HSLToColor(new float[]{ bgHSL[0], bgHSL[1],
                                                 bgHSL[2] + (float) ((bgIsDark) ? 0.45 : -0.45) });
-                    int imgFgColor = ColorUtils.HSLToColor(new float[]{ bgHSL[0], bgHSL[1],
+                    int imgFgColor;
+                    try {
+                        // FIXME: Is there any way I can make this load consistently?
+                        imgFgColor = palette.getDarkVibrantSwatch().getBodyTextColor();
+                    } catch (Exception e) {
+                        imgFgColor = ColorUtils.HSLToColor(new float[]{ bgHSL[0], bgHSL[1],
                                                 domHSL[2] + (float) ((imgIsDark) ? 0.25 : -0.25) });
+                    }
                     int translucentImgFgColor = ColorUtils.setAlphaComponent(imgFgColor, (int) Math.round(255 * 0.75)); // Is this really the right alpha value? Or is it x/255?
                     int mainTextColor = (bgIsDark) ? Utils.colorFromId(activity, R.color.colorNeutral) : Utils.colorFromId(activity, R.color.textRegular);
-
-                    // FIXME: May want to employ a scaling-based system where the darker or lighter an image is, the more contrast I create.
-                    // FIXME: Doesn't cap out at 0 and 1--it should, though.
 
                     ((ImgViewHolder) viewHolder).flBG.setBackgroundColor(bgColor);
                     viewHolder.tvName.setTextColor(imgFgColor);
@@ -203,7 +206,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                     setFavoriteColor(viewHolder, t);
                     setReplyColor(viewHolder, t);
 
-                    Bitmap b = Bitmap.createBitmap(((ImgViewHolder) viewHolder).ivFade.getWidth(), ((ImgViewHolder) viewHolder).ivFade.getHeight(), Bitmap.Config.ARGB_8888);
+                    Bitmap b;
+                    try {
+                        b = Bitmap.createBitmap(((ImgViewHolder) viewHolder).ivFade.getWidth(), ((ImgViewHolder) viewHolder).ivFade.getHeight(), Bitmap.Config.ARGB_8888);
+                    } catch (IllegalArgumentException e) {
+                        b = Bitmap.createBitmap(10000, 220, Bitmap.Config.ARGB_8888);
+                    }
                     Shader mShader = new LinearGradient(0, 0, 0, b.getHeight(), new int[] { transparentBgColor, bgColor },
                             null, Shader.TileMode.CLAMP);
                     Paint paint = new Paint();

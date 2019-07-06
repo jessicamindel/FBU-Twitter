@@ -47,6 +47,7 @@
                     android:id="@+id/ivFade"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="@+id/ivFirstImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
