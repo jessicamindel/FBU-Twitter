@@ -2,6 +2,8 @@ FBU Seattle CodePath
 # Twitter
 A simple Twitter client.
 
+![](https://github.com/jessicamindel/FBU-Twitter/raw/master/Twitter%20Demo.gif)
+
 ## Required User Stories (MVP)
 - [x] User can sign in to Twitter using OAuth login (2 points)
 - [x] User can view the tweets from their home timeline (4 points)
